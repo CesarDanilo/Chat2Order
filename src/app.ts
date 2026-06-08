@@ -9,6 +9,7 @@ import parseRoutes from "./routes/parse.routes";
 import userRoutes from "./routes/user.routes";
 import authRoutes from "./routes/auth/auth.routes";
 import orderRoutes from "./routes/order.routes";
+import productRoutes from "./routes/products.routes"
 
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
@@ -85,6 +86,7 @@ app.use("/api", parseRoutes);
 app.use("/api", userRoutes);
 app.use("/api", authRoutes);
 app.use("/api", orderRoutes);
+app.use("/api", productRoutes);
 
 /**
  * =========================

@@ -21,6 +21,7 @@ model User {
   admin     Boolean  @default(false)
 
   orders    Order[]
+  products  Product[] 
 
   createdAt DateTime @default(now())
 }
@@ -49,11 +50,16 @@ model Order {
 }
 
 model OrderItem {
-  id          String  @id @default(uuid())
+  id          String   @id @default(uuid())
 
   orderId     String
-  order       Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
 
+  // Produto cadastrado (opcional)
+  productId   String?
+  product     Product? @relation(fields: [productId], references: [id])
+
+  // Produto avulso (quando não tem cadastro)
   productName String
   quantity    Int
   unitPrice   Float
@@ -83,4 +89,23 @@ model AILog {
   errorMessage String?
 
   createdAt    DateTime @default(now())
+}
+
+model Product {
+  id          String   @id @default(uuid())
+
+  userId      String 
+  user        User     @relation(fields: [userId], references: [id])  
+
+
+  name        String
+  description String?
+  price       Float
+  category    String?
+  available   Boolean  @default(true)
+
+  items       OrderItem[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
