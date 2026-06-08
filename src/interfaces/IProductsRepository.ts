@@ -2,6 +2,7 @@ import { Product } from "@prisma/client";
 
 export interface CreateProducts {
     id: string;
+    userId: string;
     name: string;
     description: string;
     price: number;
