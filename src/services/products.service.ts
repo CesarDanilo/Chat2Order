@@ -10,8 +10,8 @@ export class ProductServices {
         return await this.orderRepository.create(data);
     }
 
-    async GetProductsById(productId: string){
-        return await this.orderRepository.findById(productId);
+    async GetProductsById(userId: string){
+        return await this.orderRepository.findById(userId);
     }
 
     

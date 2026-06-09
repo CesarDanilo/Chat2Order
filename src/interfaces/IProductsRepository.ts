@@ -11,5 +11,5 @@ export interface CreateProducts {
 
 export interface IProductRepository {
     create(data: CreateProducts): Promise<Product>;
-    findById(id: string): Promise<Product | null>;
+    findById(userId: string): Promise<Product | null>;
 }

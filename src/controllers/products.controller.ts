@@ -24,14 +24,15 @@ export class ProductsController {
         const productsService = new ProductServices(productsRepository);
 
         try {
-            const id = String(req.params.id);
-            const product = await productsService.GetProductsById(id);
+            const product = await productsService.GetProductsById((req as any).user.id);
 
             if(!product){
                 return res.status(404).json({
                     message: "Produto não encontrado"
                 })
             }
+
+            return res.json(product)
         } catch (error: any) {
             return res.status(500).json({
                 error: "Error processing Product",

@@ -23,10 +23,10 @@ export class PrismaProductsRepository
     });
   }
 
-  async findById(id: string) {
-    return prisma.product.findUnique({
+  async findById(userId: string) {
+    return prisma.product.findMany({
       where: {
-        id,
+        userId,
       },
     });
   }
