@@ -26,9 +26,9 @@ export class ProductsController {
         try {
             const product = await productsService.GetProductsById((req as any).user.id);
 
-            if(!product){
+            if (!product || product.length === 0) {
                 return res.status(404).json({
-                    message: "Produto não encontrado"
+                    message: "Nenhum produto encontrado"
                 })
             }
 
