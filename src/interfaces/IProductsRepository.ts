@@ -19,7 +19,7 @@ export interface UpdateProducts {
 
 export interface IProductRepository {
   create(data: CreateProducts): Promise<Product>;
-  findById(userId: string): Promise<Product | null>;
-  update(id: string, data: UpdateProducts): Promise<Product>
+  findAllByUser(userId: string): Promise<Product[]>;
+  findById(productId: string): Promise<Product | null>;
+  update(productId: string, data: UpdateProducts): Promise<Product>;
 }
-

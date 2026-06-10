@@ -10,11 +10,15 @@ export class ProductServices {
         return await this.orderRepository.create(data);
     }
 
-    async GetProductsById(userId: string) {
-        return await this.orderRepository.findById(userId);
+    async GetProductsByUser(userId: string) {
+        return await this.orderRepository.findAllByUser(userId);
     }
 
     async UpdateProduct(id: string, data: UpdateProducts) {
         return await this.orderRepository.update(id, data);
+    }
+
+    async GetProductById(id: string) {
+        return await this.orderRepository.findById(id);
     }
 }

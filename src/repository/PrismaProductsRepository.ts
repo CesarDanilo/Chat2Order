@@ -1,41 +1,39 @@
 import { prisma } from "../config/prisma";
-import {
-  IProductRepository,
-  CreateProducts,
-  UpdateProducts,
-} from "../interfaces/IProductsRepository";
+import { IProductRepository, CreateProducts, UpdateProducts } from "../interfaces/IProductsRepository";
 
-export class PrismaProductsRepository
-  implements IProductRepository {
+export class PrismaProductsRepository implements IProductRepository {
 
   async create(data: CreateProducts) {
     const { userId, ...rest } = data;
 
-    return await prisma.product.create({
+    return prisma.product.create({
       data: {
         ...rest,
-
         user: {
-          connect: {
-            id: userId,
-          },
+          connect: { id: userId },
         },
       },
     });
   }
 
-  async findById(userId: string) {
-    return prisma.product.findMany({
-      where: {
-        userId,
-      },
+  async findById(productId: string) {
+    return prisma.product.findUnique({
+      where: { id: productId },
     });
   }
 
-  async update(id: string, data: UpdateProducts){
+  async findAllByUser(userId: string) {
+    return prisma.product.findMany({
+      where: { userId },
+    });
+  }
+
+  async update(productId: string, data: UpdateProducts) {
     return prisma.product.update({
-      where: { id },
-      data
-    })
+      where: {
+        id: productId,
+      },
+      data,
+    });
   }
 }
