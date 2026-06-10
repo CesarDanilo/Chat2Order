@@ -21,4 +21,8 @@ export class ProductServices {
     async GetProductById(id: string) {
         return await this.orderRepository.findById(id);
     }
+
+    async DeleteProductById(id: string) {
+        return await this.orderRepository.delete(id);
+    }
 }

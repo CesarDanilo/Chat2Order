@@ -9,5 +9,6 @@ router.get("/product", authMiddleware, productsController.GetProductsByUser);
 router.get("/product/:id", authMiddleware, productsController.GetProductById);
 router.post("/product", authMiddleware, productsController.CreateProducts);
 router.put("/product/:id", authMiddleware, productsController.UpdateProducts);
+router.delete("/product/:id", authMiddleware, productsController.DeleteProduct);
 
 export default router;

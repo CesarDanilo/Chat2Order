@@ -70,4 +70,19 @@ export class ProductsController {
             });
         }
     }
+
+    async DeleteProduct(req: Request, res: Response) {
+        const productsRepository = new PrismaProductsRepository();
+        const productsService = new ProductServices(productsRepository);
+
+        try {
+            const product = await productsService.DeleteProductById((req.params as any).id)
+            return res.json(product);
+        } catch (error: any) {
+            return res.status(500).json({
+                error: "Error processing Product",
+                message: error.message,
+            });
+        }
+    }
 }

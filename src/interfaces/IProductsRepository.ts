@@ -22,4 +22,5 @@ export interface IProductRepository {
   findAllByUser(userId: string): Promise<Product[]>;
   findById(productId: string): Promise<Product | null>;
   update(productId: string, data: UpdateProducts): Promise<Product>;
+  delete(productId: string): Promise<Product>;
 }
