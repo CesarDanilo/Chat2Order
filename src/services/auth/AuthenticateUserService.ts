@@ -29,6 +29,7 @@ export class AuthenticateUserService{
         token: token
       };
     }catch(error){
+      console.error(error)
       throw new Error('Invalid credentials');
     }
   }
