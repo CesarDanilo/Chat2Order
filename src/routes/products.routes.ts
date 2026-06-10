@@ -7,5 +7,6 @@ const productsController = new ProductsController();
 
 router.get("/product", authMiddleware, productsController.GetProductsById);
 router.post("/product", authMiddleware, productsController.CreateProducts);
+router.put("/product/:id", authMiddleware, productsController.UpdateProducts);
 
 export default router;

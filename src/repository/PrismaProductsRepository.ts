@@ -2,6 +2,7 @@ import { prisma } from "../config/prisma";
 import {
   IProductRepository,
   CreateProducts,
+  UpdateProducts,
 } from "../interfaces/IProductsRepository";
 
 export class PrismaProductsRepository
@@ -29,5 +30,12 @@ export class PrismaProductsRepository
         userId,
       },
     });
+  }
+
+  async update(id: string, data: UpdateProducts){
+    return prisma.product.update({
+      where: { id },
+      data
+    })
   }
 }
